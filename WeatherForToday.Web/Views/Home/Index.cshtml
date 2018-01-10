@@ -4,4 +4,20 @@
     ViewBag.Title = "Home Page";
 }
 
-<h1>@Model.Main.Temp</h1>
+<div class="container" style="margin-top: 200px; width: 100px;">
+    <div class="forecast-container">
+        <div class="today forecast">
+            <div class="forecast-header">
+                <div class="day">@DateTime.Today.DayOfWeek</div>
+                <div class="date">@DateTime.Today.ToShortDateString()</div>
+            </div>
+            <div class="forecast-content">
+                <div class="location">@Model.Name</div>
+                <div class="degree">
+                    <div class="num">@Model.Main.Temp<sup>o</sup>C</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
