@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Globalization;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using WeatherForToday.Models.Models;
 using WeatherForToday.Services.Interfaces;
@@ -15,17 +17,18 @@ namespace WeatherForToday.Web.Controllers
             _weatherService = weatherService;
         }
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
+            string userIp = HttpContext.Request.UserHostAddress;
             try
             {
-                WeatherInfo weatherInfo = _weatherService.GetWeatherForecastCelsius(RegionInfo.CurrentRegion.DisplayName);
+                WeatherInfo weatherInfo = await _weatherService.GetWeatherForecastCelsius(userIp);
                 return View(weatherInfo);
             }
             catch (Exception e)
             {
                 return Content(e.Message);
-            }        
+            }
         }
     }
 }
