@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Web.Mvc;
 using WeatherForToday.Models.Models;
 using WeatherForToday.Services.Interfaces;
@@ -18,7 +19,7 @@ namespace WeatherForToday.Web.Controllers
         {
             try
             {
-                WeatherInfo weatherInfo = _weatherService.GetWeatherForecastCelsius("Kharkiv");
+                WeatherInfo weatherInfo = _weatherService.GetWeatherForecastCelsius(RegionInfo.CurrentRegion.DisplayName);
                 return View(weatherInfo);
             }
             catch (Exception e)
